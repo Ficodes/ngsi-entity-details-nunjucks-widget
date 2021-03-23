@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Vendor" name="ngsi-entity-details-nunjucks-widget"
+          version="0.1.1a57">
+
+    <details>
+        <title>Details nunjucks widget</title>
+        <homepage>https://github.com/wirecloud-fiware/ngsi-datamodel2poi-operator</homepage>
+        <authors>Pablo Aznárez &lt;paznarez@ficodes.com&gt;</authors>
+        <email>paznarez@ficodes.com</email>
+        <image>images/catalogue.png</image>
+        <description>Transform ngsi to details template.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <license>Apache License 2.0</license>
+        <licenseurl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseurl>
+        <doc>doc/userguide.md</doc>
+        <changelog>doc/changelog.md</changelog>
+        <issuetracker>https://github.com/wirecloud-fiware/ngsi-entity-details-nunjucks-widget/issues</issuetracker>
+    </details>
+
+    <requirements>
+        <feature name="NGSI"/>
+        <feature name="DashboardManagement"/>
+    </requirements>
+    <preferences>
+        <preference
+                name="schemas_file_host"
+                type="text"
+                label="Schemas json file"
+                description="Example: http://nginxserver.com/schemasDef.json"
+                default=""/>
+        <preference
+                name="assets_host"
+                type="text"
+                label="Assets host"
+                description="Url where the schemas,icons and templates are hosted. Example http://nginxserver.com/"
+                default=""/>
+        <preference
+                name="views_path"
+                type="text"
+                label="Views Path"
+                description="For example: views ( the result will be http://nginxserver.com/views )"
+                default="views"/>
+        <preference
+                name="ngsi_types"
+                type="text"
+                label="Ngsi types"
+                description="A comma separated list of ngsi types to build pois."
+                default=""/>
+    </preferences>
+
+    <wiring>
+        <inputendpoint
+                name="PoiInput"
+                type="text"
+                label="Poi"
+                description="Entity ID for historical information"
+                friendcode="Poi"
+        />
+    </wiring>
+    <rendering height="100%" width="30%"/>
+    <contents src="index.html"/>
+</widget>
