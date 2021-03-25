@@ -38,6 +38,9 @@ TemplateEngine.addFilter('is_arr', function (param) {
 TemplateEngine.addFilter('addressProc', function (address) {
     return buildHtmlAddress(address)
 })
+TemplateEngine.addFilter('location_format', function (location) {
+    return `[${location.coordinates[0]}, ${location.coordinates[1]}]`;
+})
 TemplateEngine.addFilter('json_string', function (data) {
     return JSON.stringify(data, null, 2);
 })

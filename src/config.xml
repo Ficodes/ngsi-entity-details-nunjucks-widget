@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Vendor" name="ngsi-entity-details-nunjucks-widget"
-          version="0.1.1a57">
+          version="0.1.1a79">
 
     <details>
         <title>Details nunjucks widget</title>
@@ -52,9 +52,16 @@
         <inputendpoint
                 name="PoiInput"
                 type="text"
-                label="Poi"
-                description="Entity ID for historical information"
+                label="PoiInput"
+                description=""
                 friendcode="Poi"
+        />
+        <outputendpoint
+                name="PoiOutput"
+                type="text"
+                label="Poi output"
+                description=""
+                friendcode="poiOutput"
         />
     </wiring>
     <rendering height="100%" width="30%"/>

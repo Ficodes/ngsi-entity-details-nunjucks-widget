@@ -17,25 +17,30 @@
 
 
 import renderTemplate from "./template-engine";
+import Methods from "./methods";
 
 (async () => {
-    // poi[key] = renderTemplate(schema[key].substring(2, schema[key].length - 2), keyValueEntity)
     const response = await fetch(MashupPlatform.prefs.get('schemas_file_host').trim(), { method: 'GET', mode: 'cors' })
-    //const response = await fetch('https://github.com/Ficodes/smart-datamodel-views/blob/master/schemas-config/schemasDetailsConf.json', { method: 'GET', mode: 'cors' })
     let schemasConf = await response.json()
 
     let schemasTypes = MashupPlatform.prefs.get('ngsi_types').trim().split(new RegExp(',\\s*')).filter(Boolean)
-    //let schemasTypes = 'Alert'.trim().split(new RegExp(',\\s*')).filter(Boolean)
-    if (schemasTypes.length > 0) {
-        schemasConf = schemasConf.filter(schemaconf => schemasTypes.includes(schemaconf.type))
-    }
-
+    // MashupPlatform.wiring.pushEvent()
     MashupPlatform.wiring.registerCallback('PoiInput', (entity) => {
         if(entity && entity.data) {
-            if (schemasTypes.includes(entity.data.type)) {
-                let template = renderTemplate(schemasConf[0].template, entity.data);
-                console.log(template);
-                document.getElementById('content').innerHTML = template;
+            if (schemasTypes.length > 0) {
+                if (schemasTypes.includes(entity.data.type)) {
+                    const schemaConf = schemasConf.filter(schemaconf => schemaconf.type==entity.data.type);
+                    let template = renderTemplate(schemaConf[0].template, entity.data);
+                    document.getElementById('content').innerHTML = template;
+                    Methods.onClick = (el)=> {
+                        const propertyVal = el.getAttribute('data-param-value');
+                        console.log(propertyVal, '************************************')
+                        MashupPlatform.wiring.pushEvent('PoiOutput', propertyVal);
+                    };
+
+
+                    Methods.initialize();
+                }
             }
             else{
                 document.getElementById('content').innerHTML = `<div className="alert alert-primary" role="alert">
@@ -44,6 +49,4 @@ import renderTemplate from "./template-engine";
             }
         }
     })
-
-
 })()

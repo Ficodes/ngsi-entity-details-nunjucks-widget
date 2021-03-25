@@ -72,6 +72,7 @@ module.exports = function (grunt) {
                             'css/**/*',
                             'doc/**/*',
                             'images/**/*',
+                            'webfonts/**/*',
                             'index.html',
                             'config.xml'
                         ]
